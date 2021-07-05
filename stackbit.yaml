@@ -1,0 +1,541 @@
+stackbitVersion: ~0.3.0
+ssgName: hugo
+publishDir: public
+dataDir: data
+pagesDir: content
+assets:
+  referenceType: static
+  staticDir: static
+  uploadDir: assets
+  publicPath: /
+cmsName: git
+models:
+  page_1:
+    type: page
+    label: Page 1
+    match:
+      - admin/index.md
+      - contact/index.md
+      - people/index.md
+    fields:
+      - type: string
+        name: type
+        label: Type
+      - type: list
+        name: outputs
+        label: Outputs
+        items:
+          type: string
+  author:
+    type: page
+    label: Author
+    folder: authors
+    match: '**/*'
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: boolean
+        name: superuser
+        label: Superuser
+      - type: string
+        name: role
+        label: Role
+      - type: list
+        name: organizations
+        label: Organizations
+        items:
+          type: object
+          fields:
+            - type: string
+              name: name
+              label: Name
+            - type: string
+              name: url
+              label: Url
+      - type: string
+        name: bio
+        label: Bio
+      - type: list
+        name: interests
+        label: Interests
+        items:
+          type: string
+      - type: object
+        name: education
+        label: Education
+        fields:
+          - type: list
+            name: courses
+            label: Courses
+            items:
+              type: object
+              fields:
+                - type: string
+                  name: course
+                  label: Course
+                - type: string
+                  name: institution
+                  label: Institution
+                - type: number
+                  name: year
+                  label: Year
+                  subtype: int
+      - type: list
+        name: social
+        label: Social
+        items:
+          type: object
+          fields:
+            - type: string
+              name: icon
+              label: Icon
+            - type: string
+              name: icon_pack
+              label: Icon Pack
+            - type: string
+              name: link
+              label: Link
+      - type: string
+        name: email
+        label: Email
+      - type: boolean
+        name: highlight_name
+        label: Highlight Name
+      - type: list
+        name: user_groups
+        label: User Groups
+        items:
+          type: string
+      - type: list
+        name: authors
+        label: Authors
+        items:
+          type: string
+  page_2:
+    type: page
+    label: Page 2
+    match:
+      - contact/contact.md
+      - contact/image.md
+      - home/image.md
+      - home/news.md
+      - home/welcome.md
+      - people/people.md
+    fields:
+      - type: string
+        name: widget
+        label: Widget
+      - type: boolean
+        name: headless
+        label: Headless
+      - type: number
+        name: weight
+        label: Weight
+        subtype: int
+      - type: string
+        name: title
+        label: Title
+      - type: string
+        name: subtitle
+        label: Subtitle
+      - type: object
+        name: content
+        label: Content
+        fields:
+          - type: boolean
+            name: autolink
+            label: Autolink
+          - type: object
+            name: form
+            label: Form
+            fields:
+              - type: string
+                name: provider
+                label: Provider
+              - type: object
+                name: netlify
+                label: Netlify
+                fields:
+                  - type: boolean
+                    name: captcha
+                    label: Captcha
+          - type: number
+            name: count
+            label: Count
+            subtype: int
+          - type: object
+            name: filters
+            label: Filters
+            fields:
+              - type: string
+                name: author
+                label: Author
+              - type: string
+                name: category
+                label: Category
+              - type: boolean
+                name: exclude_featured
+                label: Exclude Featured
+              - type: string
+                name: publication_type
+                label: Publication Type
+              - type: string
+                name: tag
+                label: Tag
+          - type: number
+            name: offset
+            label: Offset
+            subtype: int
+          - type: string
+            name: order
+            label: Order
+          - type: string
+            name: page_type
+            label: Page Type
+          - type: list
+            name: user_groups
+            label: User Groups
+            items:
+              type: string
+      - type: object
+        name: design
+        label: Design
+        fields:
+          - type: string
+            name: columns
+            label: Columns
+          - type: object
+            name: background
+            label: Background
+            fields:
+              - type: image
+                name: image
+                label: Image
+              - type: number
+                name: image_darken
+                label: Image Darken
+                subtype: int
+              - type: boolean
+                name: image_parallax
+                label: Image Parallax
+              - type: string
+                name: image_position
+                label: Image Position
+              - type: string
+                name: image_size
+                label: Image Size
+              - type: boolean
+                name: text_color_light
+                label: Text Color Light
+          - type: object
+            name: spacing
+            label: Spacing
+            fields:
+              - type: list
+                name: padding
+                label: Padding
+                items:
+                  type: string
+          - type: number
+            name: view
+            label: View
+            subtype: int
+          - type: boolean
+            name: show_interests
+            label: Show Interests
+          - type: boolean
+            name: show_role
+            label: Show Role
+          - type: boolean
+            name: show_social
+            label: Show Social
+      - type: object
+        name: advanced
+        label: Advanced
+        fields:
+          - type: string
+            name: css_class
+            label: Css Class
+      - type: boolean
+        name: active
+        label: Active
+      - type: image
+        name: hero_media
+        label: Hero Media
+  page_3:
+    type: page
+    label: Page 3
+    match:
+      - event/_index.md
+      - post/_index.md
+      - publication/_index.md
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: number
+        name: view
+        label: View
+        subtype: int
+      - type: object
+        name: header
+        label: Header
+        fields:
+          - type: string
+            name: caption
+            label: Caption
+          - type: string
+            name: image
+            label: Image
+  example:
+    type: page
+    label: Example
+    folder: event/example
+    match: '*'
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: string
+        name: event
+        label: Event
+      - type: string
+        name: event_url
+        label: Event Url
+      - type: string
+        name: location
+        label: Location
+      - type: object
+        name: address
+        label: Address
+        fields:
+          - type: string
+            name: street
+            label: Street
+          - type: string
+            name: city
+            label: City
+          - type: string
+            name: region
+            label: Region
+          - type: string
+            name: postcode
+            label: Postcode
+          - type: string
+            name: country
+            label: Country
+      - type: string
+        name: summary
+        label: Summary
+      - type: string
+        name: abstract
+        label: Abstract
+      - type: datetime
+        name: date
+        label: Date
+      - type: datetime
+        name: date_end
+        label: Date End
+      - type: boolean
+        name: all_day
+        label: All Day
+      - type: date
+        name: publishDate
+        label: Publish Date
+      - type: boolean
+        name: featured
+        label: Featured
+      - type: object
+        name: image
+        label: Image
+        fields:
+          - type: markdown
+            name: caption
+            label: Caption
+          - type: string
+            name: focal_point
+            label: Focal Point
+      - type: string
+        name: url_code
+        label: Url Code
+      - type: string
+        name: url_pdf
+        label: Url Pdf
+      - type: string
+        name: url_slides
+        label: Url Slides
+      - type: string
+        name: url_video
+        label: Url Video
+  home:
+    type: page
+    label: Home
+    folder: home
+    match:
+      - index.md
+    fields:
+      - type: string
+        name: type
+        label: Type
+      - type: boolean
+        name: headless
+        label: Headless
+  post:
+    type: page
+    label: Post
+    folder: post
+    match: '**/*'
+    exclude:
+      - _index.md
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: date
+        name: date
+        label: Date
+  publication:
+    type: page
+    label: Publication
+    folder: publication
+    match: '**/*'
+    exclude:
+      - _index.md
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: list
+        name: authors
+        label: Authors
+        items:
+          type: string
+      - type: date
+        name: date
+        label: Date
+      - type: string
+        name: doi
+        label: Doi
+      - type: date
+        name: publishDate
+        label: Publish Date
+      - type: list
+        name: publication_types
+        label: Publication Types
+        items:
+          type: string
+      - type: string
+        name: publication
+        label: Publication
+      - type: string
+        name: publication_short
+        label: Publication Short
+      - type: string
+        name: abstract
+        label: Abstract
+      - type: string
+        name: summary
+        label: Summary
+      - type: list
+        name: tags
+        label: Tags
+        items:
+          type: string
+      - type: boolean
+        name: featured
+        label: Featured
+      - type: list
+        name: links
+        label: Links
+        items:
+          type: object
+          fields:
+            - type: string
+              name: name
+              label: Name
+            - type: string
+              name: url
+              label: Url
+      - type: string
+        name: url_pdf
+        label: Url Pdf
+      - type: string
+        name: url_code
+        label: Url Code
+      - type: string
+        name: url_dataset
+        label: Url Dataset
+      - type: string
+        name: url_poster
+        label: Url Poster
+      - type: string
+        name: url_project
+        label: Url Project
+      - type: string
+        name: url_slides
+        label: Url Slides
+      - type: string
+        name: url_source
+        label: Url Source
+      - type: string
+        name: url_video
+        label: Url Video
+      - type: object
+        name: image
+        label: Image
+        fields:
+          - type: markdown
+            name: caption
+            label: Caption
+          - type: string
+            name: focal_point
+            label: Focal Point
+          - type: boolean
+            name: preview_only
+            label: Preview Only
+      - type: list
+        name: projects
+        label: Projects
+        items:
+          type: string
+      - type: list
+        name: author_notes
+        label: Author Notes
+        items:
+          type: string
+  test:
+    type: page
+    label: Test
+    folder: slides/test
+    match: '*'
+    fields:
+      - type: string
+        name: title
+        label: Title
+      - type: datetime
+        name: date
+        label: Date
+      - type: boolean
+        name: draft
+        label: Draft
+      - type: object
+        name: slides
+        label: Slides
+        fields:
+          - type: string
+            name: theme
+            label: Theme
+      - type: object
+        name: image
+        label: Image
+        fields:
+          - type: string
+            name: filename
+            label: Filename
+          - type: string
+            name: focal_point
+            label: Focal Point
+          - type: boolean
+            name: preview_only
+            label: Preview Only
